@@ -3,6 +3,7 @@ using ClinicManager.Application;
 using ClinicManager.Domain.Interfaces;
 using ClinicManager.Infrastructure.Data;
 using ClinicManager.Infrastructure.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +26,7 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddAutoMapper(typeof(ApplicationAssemblyReference).Assembly);
 
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(SanitizeStringsBehavior<,>));
 
 var app = builder.Build();
 

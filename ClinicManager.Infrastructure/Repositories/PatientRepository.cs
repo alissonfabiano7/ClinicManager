@@ -26,7 +26,7 @@ public class PatientRepository : IPatientRepository
         if (!string.IsNullOrWhiteSpace(search))
         {
             query = query.Where(p =>
-                p.Name.Contains(search) ||
+                p.NormalizedName.Contains(search) ||
                 p.Cpf.Contains(search)
             );
         }
