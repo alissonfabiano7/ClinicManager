@@ -1,4 +1,5 @@
 using ClinicManager.Application.Patients.Queries;
+using ClinicManager.Application.Patients.Queries.GetPatientById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
