@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using ClinicManager.Application.Patients.DTOs;
-using ClinicManager.Application.Patients.Queries;
 using ClinicManager.Domain.Interfaces;
 using MediatR;
 
-namespace ClinicManager.Application.Patients.Handlers;
+namespace ClinicManager.Application.Patients.Queries.GetPatientById;
 
 public class GetPatientByIdHandler : IRequestHandler<GetPatientByIdQuery, PatientDto>
 {

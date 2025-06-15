@@ -33,4 +33,21 @@ public class PatientRepository : IPatientRepository
 
         return await query.ToListAsync(ct);
     }
+
+    public async Task CreateAsync(Patient patient, CancellationToken ct)
+    {
+        await _context.Patients.AddAsync(patient, ct);
+    }
+
+    public Task UpdateAsync(Patient patient, CancellationToken ct)
+    {
+        _context.Patients.Update(patient);
+        return Task.CompletedTask;
+    }
+
+    public Task DeleteAsync(Patient patient, CancellationToken ct)
+    {
+        _context.Patients.Remove(patient);
+        return Task.CompletedTask;
+    }
 }
