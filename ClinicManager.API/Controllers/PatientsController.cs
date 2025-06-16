@@ -1,4 +1,6 @@
 using ClinicManager.Application.Patients.Commands.CreatePatient;
+using ClinicManager.Application.Patients.Commands.DeletePatient;
+using ClinicManager.Application.Patients.Commands.UpdatePatient;
 using ClinicManager.Application.Patients.Queries;
 using ClinicManager.Application.Patients.Queries.GetPatientById;
 using ClinicManager.Application.Patients.Queries.SearchPatients;
@@ -37,5 +39,19 @@ public class PatientsController : ControllerBase
     {
         var id = await _mediator.Send(command, ct);
         return CreatedAtAction(nameof(GetById), new { id }, id);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdatePatientCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id, [FromBody] DeletePatientCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
     }
 }

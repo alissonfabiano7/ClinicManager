@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ClinicManager.Application.Exceptions;
 using ClinicManager.Domain.Interfaces;
 using MediatR;
 
@@ -19,7 +20,7 @@ namespace ClinicManager.Application.Patients.Commands.UpdatePatient
         {
             var patient = await _repository.GetByIdAsync(cmd.Id);
             if (patient is null)
-                throw new Exception($"Patient with id {cmd.Id} not found.");
+                throw new NotFoundException(nameof(patient), cmd.Id);
 
             _mapper.Map(cmd, patient);
 
