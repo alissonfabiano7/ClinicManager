@@ -3,6 +3,8 @@ using ClinicManager.Application.Patients.DTOs;
 using ClinicManager.Domain.Interfaces;
 using MediatR;
 
+namespace ClinicManager.Application.Patients.Queries.SearchPatients;
+
 public class SearchPatientsHandler : IRequestHandler<SearchPatientsQuery, List<PatientDto>>
 {
     private readonly IPatientRepository _repository;

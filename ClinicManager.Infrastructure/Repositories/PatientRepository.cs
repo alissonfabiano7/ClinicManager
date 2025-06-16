@@ -37,6 +37,7 @@ public class PatientRepository : IPatientRepository
     public async Task CreateAsync(Patient patient, CancellationToken ct)
     {
         await _context.Patients.AddAsync(patient, ct);
+        await _context.SaveChangesAsync(ct);
     }
 
     public Task UpdateAsync(Patient patient, CancellationToken ct)

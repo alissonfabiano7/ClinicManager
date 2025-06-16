@@ -1,11 +1,11 @@
-using System.Reflection;
 using ClinicManager.Application;
 using ClinicManager.Domain.Interfaces;
 using ClinicManager.Infrastructure.Data;
 using ClinicManager.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using FluentValidation;
+using ClinicManager.Application.Patients.Commands.CreatePatient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,14 +19,23 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyReference).Assembly));
+{
+    cfg.RegisterServicesFromAssembly(typeof(ApplicationAssemblyReference).Assembly);
+});
 
 builder.Services.AddAutoMapper(typeof(ApplicationAssemblyReference).Assembly);
 
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(SanitizeStringsBehavior<,>));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+
+
+builder.Services.AddTransient<IValidator<CreatePatientCommand>, CreatePatientValidator>();
+
+
 
 var app = builder.Build();
 

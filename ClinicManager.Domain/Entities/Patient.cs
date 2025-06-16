@@ -7,7 +7,6 @@ public class Patient
     private string _name = "";
 
     public Guid Id { get; set; }
-
     public string Name
     {
         get => _name;

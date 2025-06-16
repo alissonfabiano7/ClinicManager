@@ -1,5 +1,7 @@
+using ClinicManager.Application.Patients.Commands.CreatePatient;
 using ClinicManager.Application.Patients.Queries;
 using ClinicManager.Application.Patients.Queries.GetPatientById;
+using ClinicManager.Application.Patients.Queries.SearchPatients;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,5 +30,12 @@ public class PatientsController : ControllerBase
     {
         var result = await _mediator.Send(new SearchPatientsQuery(search));
         return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Guid>> Create(CreatePatientCommand command, CancellationToken ct)
+    {
+        var id = await _mediator.Send(command, ct);
+        return CreatedAtAction(nameof(GetById), new { id }, id);
     }
 }
