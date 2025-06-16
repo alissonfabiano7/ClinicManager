@@ -1,4 +1,6 @@
-﻿using ClinicManager.Application.Common.Helpers;
+﻿using System;
+using ClinicManager.Application.Common.Helpers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClinicManager.Domain.Entities;
 
@@ -21,4 +23,8 @@ public class Patient
     public DateTime BirthDate { get; set; }
     public string? Phone { get; set; }
     public string? Email { get; set; }
+    public string? BloodType { get; set; }
+    public double Height { get; set; }
+    public double Weight { get; set; }
+    public string? Address { get; set; }
 }

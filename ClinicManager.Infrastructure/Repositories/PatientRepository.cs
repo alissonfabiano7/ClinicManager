@@ -34,6 +34,14 @@ public class PatientRepository : IPatientRepository
         return await query.ToListAsync(ct);
     }
 
+    public async Task<List<Patient>> GetAllAsync(int page, int pageSize, CancellationToken ct)
+    {
+        return await _context.Patients
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+    }
+
     public async Task CreateAsync(Patient patient, CancellationToken ct)
     {
         await _context.Patients.AddAsync(patient, ct);

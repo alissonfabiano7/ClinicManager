@@ -34,6 +34,8 @@ builder.Services.AddAutoMapper(typeof(ApplicationAssemblyReference).Assembly);
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 
 
 builder.Services.AddTransient<IValidator<CreatePatientCommand>, CreatePatientValidator>();

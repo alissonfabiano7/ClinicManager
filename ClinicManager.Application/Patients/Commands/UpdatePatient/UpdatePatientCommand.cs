@@ -8,7 +8,11 @@ namespace ClinicManager.Application.Patients.Commands.UpdatePatient
         string Cpf,
         DateTime BirthDate,
         string? Email,
-        string? Phone
+        string? Phone,
+        string? BloodType,
+        double Height,
+        double Weight,
+        string? Address
     ) : IRequest<Unit>;
 
 }

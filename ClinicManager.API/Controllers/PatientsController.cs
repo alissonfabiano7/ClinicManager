@@ -2,6 +2,7 @@ using ClinicManager.Application.Patients.Commands.CreatePatient;
 using ClinicManager.Application.Patients.Commands.DeletePatient;
 using ClinicManager.Application.Patients.Commands.UpdatePatient;
 using ClinicManager.Application.Patients.Queries;
+using ClinicManager.Application.Patients.Queries.GetAllPatients;
 using ClinicManager.Application.Patients.Queries.GetPatientById;
 using ClinicManager.Application.Patients.Queries.SearchPatients;
 using MediatR;
@@ -18,6 +19,13 @@ public class PatientsController : ControllerBase
     public PatientsController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] GetAllPatientsQuery query)
+    {
+        var result = await _mediator.Send(query);
+        return Ok(result);
     }
 
     [HttpGet("{id:guid}")]

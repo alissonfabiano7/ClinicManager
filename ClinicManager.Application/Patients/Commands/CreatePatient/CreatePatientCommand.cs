@@ -7,4 +7,8 @@ public record CreatePatientCommand(
     string Cpf,
     DateTime BirthDate,
     string? Email,
-    string? Phone) : IRequest<Guid>;
+    string? Phone,
+    string? BloodType,
+    double Height,
+    double Weight,
+    string? Address) : IRequest<Guid>;
